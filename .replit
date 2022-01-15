@@ -1,2 +1,3 @@
 language = "cpp"
-run = "clang++-7 -pthread -std=c++17 -o BFS BFS.cpp; ./BFS"
+#run = "clang++-7 -pthread -std=c++17 -o BFS BFS.cpp; ./BFS"
+run = "sh compileAndRun.sh"
