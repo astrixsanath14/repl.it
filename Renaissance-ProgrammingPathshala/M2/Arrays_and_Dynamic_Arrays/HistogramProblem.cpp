@@ -73,7 +73,7 @@ int main()
 
       if(decidingPillarHeight > currentPillarHeight)
       {
-        waterAccumulatedHeight += decidingPillarHeight;
+        waterAccumulatedHeight += decidingPillarHeight - pillarHeights[i];
         cout<<"\nWater will be accumulated over pillar: " <<i+1<< " of height: "<<currentPillarHeight<<" waterHeight: " <<decidingPillarHeight;
       }
       else
@@ -103,8 +103,10 @@ Renaissance-ProgrammingPathshala/M2/Arrays_and_Dynamic_Arrays/HistogramProblem.c
 Y
 7
 1 2 3 4 5 6 7
+Y
+12
+0 1 0 2 1 0 1 3 2 1 2 1
 N
-
 
 Objective:
   Given the heights of N pillars, find the cumulative sum of height of water accumulated when rain falls.
