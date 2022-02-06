@@ -2,12 +2,13 @@
 #include<math.h>
 using namespace std;
 
-
 int getIndexOfMostSignificantBit(int val)
 {
-  int msbIndexOfVal = log2(val);
-  return msbIndexOfVal;
+  if(val==0)
+    return 0;
+  return (int)log2(val);
 }
+
 void printIndexOfMostSignificantBit(int val)
 {
   cout<<"Index of MSB of "<<val<<" is: "<<getIndexOfMostSignificantBit(val)<<endl;
@@ -25,15 +26,14 @@ void printLeftShift(int val, int noOfTimes)
   cout<<"Left shift of "<<val<<" for " << noOfTimes <<" times: "<<(val<<noOfTimes)<<endl;
 }
 
-
 string printBinaryRepresentation(int val, int noOfBits) {
-  int firstBit = (int)(log2(val));
+  int firstBit = getIndexOfMostSignificantBit(val);
   string s = "";
   for(int i=0;i<noOfBits-firstBit-1;i++)
     s+="0";
   for (int i = 1 << firstBit; i > 0; i = i>>1)
   {
-    if((val & i) != 0)
+    if(val & i)
       s+="1";
     else
       s+="0";
@@ -74,14 +74,15 @@ void setBitAndPrintVal(int val, int bitPos)
 {
   cout<<"-------------------"<<endl;
   cout<<"Going to set bit: " << bitPos << " in " << val<<endl;
-  int mask = 1 << (bitPos - 1);
   cout<<"\nBefore setting bit: "<<endl;
   printAllBitsWithIndexNumber(val);
+  int mask = 1 << (bitPos - 1);
   val = val | mask;
   cout<<"\nAfter setting bit: "<<endl;
   printAllBitsWithIndexNumber(val);
   cout<<"-------------------"<<endl;
 }
+
 void unsetBitAndPrintVal(int val, int bitPos)
 {
   cout<<"-------------------"<<endl;
@@ -92,11 +93,35 @@ void unsetBitAndPrintVal(int val, int bitPos)
   int noOfBits = msbIndexOfVal + 1;
   int mask = (1 << (noOfBits)) - 1;
   mask = mask ^ (1<<(bitPos-1));
-  printBinaryRepresentation(mask);
   val = val & mask;
   cout<<"\nAfter unsetting bit: "<<endl;
   printAllBitsWithIndexNumber(val);
   cout<<"-------------------"<<endl;
+}
+
+void printFlippedBits(int val)
+{
+  cout<<"-------------------"<<endl;
+  cout<<"Going to flip bits in: " << val<<endl;
+  cout<<"\nBefore flipping bits: "<<endl;
+  printAllBitsWithIndexNumber(val);
+  int msbIndexOfVal = getIndexOfMostSignificantBit(val);
+  int noOfBits = msbIndexOfVal + 1;
+  int mask = (1 << (noOfBits)) - 1;
+  val = val ^ mask;
+  cout<<"\nAfter flipping bit: "<<endl;
+  printAllBitsWithIndexNumber(val);
+  cout<<"-------------------"<<endl;
+}
+
+bool checkIfBitIsSet(int val, int bitPos)
+{
+  return val&(1<<(bitPos - 1));
+}
+
+bool checkIfBitIsUnset(int val, int bitPos)
+{
+  return !checkIfBitIsSet(val, bitPos);
 }
 
 int main()
@@ -119,6 +144,7 @@ int main()
   setBitAndPrintVal(1, 5);
   unsetBitAndPrintVal(63, 3);
   unsetBitAndPrintVal(4095, 4);
+  printFlippedBits(75);
   return 0;
 }
 
