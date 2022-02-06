@@ -6,9 +6,9 @@ echo ""
 
 inputFilePath=${inputFilePathWithExtension%.*}
 extension=${inputFilePathWithExtension##*.}
-echo "filename = ${inputFilePath}"
-echo "extension = ${extension}"
-if [ "${extension}" = "cpp" ];
+echo "filename=${inputFilePath}"
+echo "extension=${extension}"
+if [ "${extension}"="cpp" ];
 then
   echo "Going to compile and run C++ CODE: ${inputFilePathWithExtension}"
   echo "\n------------ OUTPUT START ------------"
@@ -16,7 +16,7 @@ then
   clang++-7 -pthread -std=c++17 -o ${inputFilePath} ${inputFilePathWithExtension}; ./${inputFilePath}
   echo "\n--------------------------------------"
   echo "------------ OUTPUT END --------------"
-elif [ "${extension}" = "py" ];
+elif [ "${extension}"="py" ];
 then
   echo "Going to run PYTHON CODE: ${inputFilePathWithExtension}"
   echo "\n------------ OUTPUT START ------------"

@@ -42,6 +42,7 @@ void Graph::BFS(int startVertex) {
 
   list<int>::iterator i;
 
+  int step = 0;
   while (!queue.empty()) {
     int currVertex = queue.front();
     cout << "Visited: " << currVertex << endl;
@@ -54,7 +55,9 @@ void Graph::BFS(int startVertex) {
         queue.push_back(adjVertex);
       }
     }
+    step++;
   }
+  cout<<"step: "<<step<<endl;
 }
 
 int main() {
