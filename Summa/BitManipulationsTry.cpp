@@ -126,25 +126,27 @@ bool checkIfBitIsUnset(int val, int bitPos)
 
 int main()
 {
-  printLeftShift(1, 0);
-  printLeftShift(1, 1);
-  printLeftShift(1, 10);
-  printIndexOfMostSignificantBit(0);
-  printIndexOfMostSignificantBit(1);
-  printIndexOfMostSignificantBit(2);
-  printIndexOfMostSignificantBit(3);
-  printIndexOfMostSignificantBit(4);
-  printIndexOfMostSignificantBit(8);
-  printBinaryRepresentation(5);
-  printBinaryRepresentation(123, 10);
+  // printLeftShift(1, 0);
+  // printLeftShift(1, 1);
+  // printLeftShift(1, 10);
+  // printIndexOfMostSignificantBit(0);
+  // printIndexOfMostSignificantBit(1);
+  // printIndexOfMostSignificantBit(2);
+  // printIndexOfMostSignificantBit(3);
+  // printIndexOfMostSignificantBit(4);
+  // printIndexOfMostSignificantBit(8);
+  // printBinaryRepresentation(5);
+  // printBinaryRepresentation(123, 10);
   
-  int val = 184;
-  printAllBitsWithIndexNumber(val);
+  // int val = 184;
+  // printAllBitsWithIndexNumber(val);
 
-  setBitAndPrintVal(1, 5);
-  unsetBitAndPrintVal(63, 3);
-  unsetBitAndPrintVal(4095, 4);
-  printFlippedBits(75);
+  // setBitAndPrintVal(1, 5);
+  // unsetBitAndPrintVal(63, 3);
+  // unsetBitAndPrintVal(4095, 4);
+  // printFlippedBits(75);
+  printBinaryRepresentation(38);    printBinaryRepresentation(25);
+  printBinaryRepresentation(10);
   return 0;
 }
 
