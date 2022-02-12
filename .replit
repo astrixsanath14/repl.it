@@ -1,2 +1,2 @@
-language = "cpp,py3"
+language = "cpp,py3,sh"
 run = "sh compileAndRun.sh"
