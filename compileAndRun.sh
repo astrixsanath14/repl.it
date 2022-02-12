@@ -29,7 +29,7 @@ then
   echo "Going to run PYTHON CODE: ${inputFilePathWithExtension}"
   echo "\n------------ OUTPUT START ------------"
   echo "--------------------------------------"
-  python ${inputFilePathWithExtension}
+  sh ${inputFilePathWithExtension}
   echo "\n--------------------------------------"
   echo "------------ OUTPUT END --------------"
 else
