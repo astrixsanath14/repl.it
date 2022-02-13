@@ -72,7 +72,7 @@ int main()
 }
 
 /*
-Renaissance-ProgrammingPathshala/Live_Class/29_Jan_2021/SumOfAllSubsequencesWidths.cpp
+Renaissance-ProgrammingPathshala/Live_Class/29_Jan_2022/SumOfAllSubsequencesWidths.cpp
 3
 2 1 3
 
