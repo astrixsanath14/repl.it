@@ -1,4 +1,6 @@
 echo "" 
+hostname=$(hostname)
+echo "hostname is ${hostname}"
 echo "Enter the file path to be executed: "
 read inputFilePathWithExtension
 echo "You entered: \n${inputFilePathWithExtension}"
@@ -13,7 +15,12 @@ then
   echo "Going to compile and run C++ CODE: ${inputFilePathWithExtension}"
   echo "\n------------ OUTPUT START ------------"
   echo "--------------------------------------"
-  clang++-7 -pthread -std=c++17 -o ${inputFilePath} ${inputFilePathWithExtension}; ./${inputFilePath}
+  if [ "${hostname}" = "sanath-10401" ]
+  then
+    g++ -pthread -std=c++17 -o ${inputFilePath} ${inputFilePathWithExtension}; ./${inputFilePath}
+  else
+    clang++-7 -pthread -std=c++17 -o ${inputFilePath} ${inputFilePathWithExtension}; ./${inputFilePath}
+  fi
   echo "\n--------------------------------------"
   echo "------------ OUTPUT END --------------"
 elif [ "${extension}" = "py" ];

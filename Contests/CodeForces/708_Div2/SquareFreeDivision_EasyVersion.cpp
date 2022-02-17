@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> primeFactors(int n)
+vector<int> getPrimeFactors(int n)
 {
   int c = 2;
   vector<int> primes;
@@ -9,34 +9,71 @@ vector<int> primeFactors(int n)
   {
     if (n % c == 0)
     {
-      cout << c << " ";
+      // cout << c << " ";
       n /= c;
+      primes.push_back(c);
     }
     else
       c++;
   }
+  // cout << "\n";
+  return primes;
 }
 
-void optimizeArray(int a[])
+int getProductOfUnpairedPrimes(int val)
 {
-  for (int i = 0; sizeof(a) / sizeof(int); i++)
+  map<int, int> counterOfPrimes;
+  int prime = 2;
+
+  long long product = 1;
+
+  while (val > 1)
   {
-    while (a[i])
+    if (val % prime == 0)
     {
-      a[i];
+      // cout << prime << " ";
+      val /= prime;
+      counterOfPrimes[prime]++;
+      if (counterOfPrimes[prime] % 2 == 0)
+      {
+        product = product / prime;
+      }
+      else
+      {
+        product = product * prime;
+      }
     }
+    else
+      prime++;
   }
+  return product;
 }
+
 void solve()
 {
   int n, k;
   cin >> n >> k;
-  int a[n];
+  int val;
+  map<int, bool> primeCountersForSegments;
+  int noOfSegments = 1;
   for (int i = 0; i < n; i++)
   {
-    cin >> a[i];
+    cin >> val;
+    int product = getProductOfUnpairedPrimes(val);
+    // cout << a[i] << " " << product << "\n";
+    if (primeCountersForSegments[product])
+    {
+      // cout << "Segment found \n";
+      noOfSegments++;
+      primeCountersForSegments = map<int, bool>();
+    }
+    else
+      primeCountersForSegments[product] = true;
   }
+
+  cout << noOfSegments << "\n";
 }
+
 int main()
 {
   int t;
@@ -50,4 +87,12 @@ int main()
 
 /*
 Contests/CodeForces/708_Div2/SquareFreeDivision_EasyVersion.cpp
+3
+5 0
+18 6 2 4 1
+5 0
+6 8 1 24 8
+1 0
+1
+
 */
