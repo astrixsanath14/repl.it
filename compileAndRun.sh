@@ -28,7 +28,7 @@ then
   echo "Going to run PYTHON CODE: ${inputFilePathWithExtension}"
   echo "\n------------ OUTPUT START ------------"
   echo "--------------------------------------"
-  python ${inputFilePathWithExtension}
+  python3 ${inputFilePathWithExtension}
   echo "\n--------------------------------------"
   echo "------------ OUTPUT END --------------"
 elif [ "${extension}" = "sh" ];
