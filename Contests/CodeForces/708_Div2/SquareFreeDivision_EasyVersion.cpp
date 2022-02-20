@@ -70,12 +70,14 @@ void solve()
     else
       primeCountersForSegments[product] = true;
   }
-
   cout << noOfSegments << "\n";
 }
 
 int main()
 {
+  ios::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.tie(NULL);
   int t;
   cin >> t;
   while (t--)
@@ -86,6 +88,7 @@ int main()
 }
 
 /*
+Input:
 Contests/CodeForces/708_Div2/SquareFreeDivision_EasyVersion.cpp
 3
 5 0
@@ -93,6 +96,11 @@ Contests/CodeForces/708_Div2/SquareFreeDivision_EasyVersion.cpp
 5 0
 6 8 1 24 8
 1 0
+1
+
+Output:
+3
+2
 1
 
 */
