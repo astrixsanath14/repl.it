@@ -87,5 +87,6 @@
         "valarray": "cpp"
     },
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": false
+    "python.linting.enabled": false,
+    "C_Cpp.errorSquiggles": "Disabled"
 }
