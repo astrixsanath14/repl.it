@@ -16,43 +16,43 @@ string reverseDirection[] = {"D", "U", "R", "L"};
 bool canPrintOutputInScreen = false;
 bool canPrintOutputInFile = false;
 
-ofstream tracesout;
-string outname = string("//debug.txt");
-template <typename T>
+// ofstream tracesout;
+// string outname = string("//debug.txt");
+// template <typename T>
 
-void debug(T s)
-{
-    if (canPrintOutputInFile)
-    {
-        tracesout << "\n"
-                  << s << "\n";
-    }
-    if (canPrintOutputInScreen)
-    {
-        cout << "\n"
-             << s << "\n";
-    }
-}
+// void debug(T s)
+// {
+//     if (canPrintOutputInFile)
+//     {
+//         tracesout << "\n"
+//                   << s << "\n";
+//     }
+//     if (canPrintOutputInScreen)
+//     {
+//         cout << "\n"
+//              << s << "\n";
+//     }
+// }
 
-void printVector(vector<vector<int> > &input)
-{
-    if (canPrintOutputInScreen)
-    {
-        int n = input.size();
-        int m = input[0].size();
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < m; j++)
-            {
-                cout << input[i][j] << " ";
-            }
-            cout << "\n";
-        }
-        cout << "\n";
-    }
-}
+// void printVector(vector<vector<int> > &input)
+// {
+//     if (canPrintOutputInScreen)
+//     {
+//         int n = input.size();
+//         int m = input[0].size();
+//         for (int i = 0; i < n; i++)
+//         {
+//             for (int j = 0; j < m; j++)
+//             {
+//                 cout << input[i][j] << " ";
+//             }
+//             cout << "\n";
+//         }
+//         cout << "\n";
+//     }
+// }
 
-string getPath(int i, int j, int &n, int &m, int &yourDist, vector<vector<int> > &yourDistanceGraph)
+void printEscapePath(int i, int j, int &n, int &m, int &yourDist, vector<vector<int> > &yourDistanceGraph)
 {
     string path = "";
     while (yourDist)
@@ -66,7 +66,7 @@ string getPath(int i, int j, int &n, int &m, int &yourDist, vector<vector<int> >
             {
                 if (yourDistanceGraph[newX][newY] == yourDist - 1)
                 {
-                    path = reverseDirection[dir] + path;
+                    path += reverseDirection[dir];
                     i = newX;
                     j = newY;
                     break;
@@ -75,7 +75,9 @@ string getPath(int i, int j, int &n, int &m, int &yourDist, vector<vector<int> >
         }
         yourDist--;
     }
-    return path;
+    // return path;
+    cout << string(path.rbegin(), path.rend())
+         << "\n";
 }
 
 bool checkIfEscaped(vector<vector<int> > &graph, int i, int j, int &n, int &m, vector<vector<int> > &yourDistanceGraph, vector<vector<int> > &monsterDistanceGraph)
@@ -83,8 +85,6 @@ bool checkIfEscaped(vector<vector<int> > &graph, int i, int j, int &n, int &m, v
     // debug("checkIfEscaped i: " + to_string(i) + " j: " + to_string(j));
     if (graph[i][j])
     {
-        int yourDist = INT_MAX;
-        int monsterDist = INT_MAX;
         // if (yourVisited.find({i, j}) != yourVisited.end())
         // {
         //     yourDist = yourVisited[{i, j}];
@@ -93,16 +93,17 @@ bool checkIfEscaped(vector<vector<int> > &graph, int i, int j, int &n, int &m, v
         // {
         //     monsterDist = monsterVisited[{i, j}];
         // }
-        yourDist = yourDistanceGraph[i][j];
-        monsterDist = monsterDistanceGraph[i][j];
+        int yourDist = yourDistanceGraph[i][j];
+        int monsterDist = monsterDistanceGraph[i][j];
         // debug("i: " + to_string(i) + " j: " + to_string(j) + " yourDist: " + to_string(yourDist) + " monsterDist: " + to_string(monsterDist));
         if (yourDist < monsterDist)
         {
             cout << "YES"
                  << "\n";
             cout << yourDist << "\n";
-            string path = getPath(i, j, n, m, yourDist, yourDistanceGraph);
-            cout << path << "\n";
+            // string path = printPath(i, j, n, m, yourDist, yourDistanceGraph);
+            printEscapePath(i, j, n, m, yourDist, yourDistanceGraph);
+            // cout << path << "\n";
             // cout << yourVisited[{i, j}].second << "\n";
             // cout << "Escaped " << i << " " << j << " " <<yourDist << " " << yourVisited[{i, j}].second << "\n";
             // debug("Escaped " + to_string(i) + " " + to_string(j) + " " + path);
@@ -245,19 +246,19 @@ void solve(int &n, int &m)
 
 int main()
 {
-    if (canPrintOutputInFile)
-    {
-        tracesout.open(outname.c_str());
-    }
-    FILE *FP;         // File handler
-    char *trace_file; // Variable that holds trace file name;
-    FP = fopen(trace_file, "r");
-    if (canPrintOutputInFile && FP == NULL)
-    {
-        // Throw error and exit if fopen() failed
-        printf("Error: Unable to open file %s\n", trace_file);
-        exit(EXIT_FAILURE);
-    }
+    // if (canPrintOutputInFile)
+    // {
+    //     tracesout.open(outname.c_str());
+    // }
+    // FILE *FP;         // File handler
+    // char *trace_file; // Variable that holds trace file name;
+    // FP = fopen(trace_file, "r");
+    // if (canPrintOutputInFile && FP == NULL)
+    // {
+    //     // Throw error and exit if fopen() failed
+    //     printf("Error: Unable to open file %s\n", trace_file);
+    //     exit(EXIT_FAILURE);
+    // }
     ios::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
@@ -268,10 +269,10 @@ int main()
 
     // cout << "Output Done"<< "\n";
     // debug("Output Done.");
-    if (canPrintOutputInFile)
-    {
-        tracesout.close();
-    }
+    // if (canPrintOutputInFile)
+    // {
+    //     tracesout.close();
+    // }
     return 0;
 }
 
