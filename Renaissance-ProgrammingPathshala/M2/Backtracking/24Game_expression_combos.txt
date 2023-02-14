@@ -1,0 +1,32 @@
+-> 4 numbers a b c d
+1. (a b) c d
+1.1 ((a b) c) d
+Combo 1: (((a b) c) d)
+
+1.2 (a b) (c d)
+Combo 2: ((a b) (c d))
+
+2. a (b c) d
+2.1 (a (b c)) d
+Combo 3: ((a (b c)) d)
+
+2.2 a ((b c) d)
+Combo 4: (a ((b c) d))
+
+3. a b (c d)
+3.1 (a b) (c d)
+Combo 5: ((a b) (c d))
+
+3.2 a (b (c d))
+Combo 6: (a (b (c d)))
+
+-------
+
+-> 3 numbers a b c (2 combination)
+Combo 1: ((a b) c)
+Combo 2: (a (b c))
+
+-------
+
+-> 2 numbers: a b (1 combination)
+Combo 1: (a b)
