@@ -1,0 +1,77 @@
+- While sort, using vector<int> is faster vector<pair<int,int>> if only one elements based sorting is needed
+- Using array is better than using map/vector
+
+
+priority_queue
+- first elements always greatest/smallest
+- default top is greatest
+- built on the top of the max heap
+- using array/vector for data structure
+
+
+CONTAINERS
+- vector - push_back, back, front, pop_back, size, clear, empty, insert, erase, begin, end, rbegin, rend,
+- stack - push, pop, top, size, empty
+- queue - push, pop, front, back, size, empty
+- priority_queue - push, top, pop
+- map - insert, erase, begin, end, clear, size, empty, find
+- set - insert, erase, begin, end, clear, size, empty, find, count
+
+map:
+- insert, find, erase takes O(logn) time
+- size takes O(1) time
+
+map vs unordered_map (similar for set vs unordered_set):
+    map:
+        1. Implementation - red-black tree.
+        2. It is slow.
+        3. Time complexity for operations is O(log N)
+        4. Ordering - used to store elements as key,value pairs in order sorted by key.
+        5. search time - O(logN)
+        6. Insertion & Deletion time - O(logN) + Rebalance
+    unordered_map:
+        1. Implementation - hash table.
+        2. It is fast.
+        3. Time complexity for operations is O(1)
+        4. Ordering - used to store elements as key,value pairs in non-sorted order.
+        5. search time - O(1) -> Average, O(N) -> Worst Case
+        6. Insertion & Deletion time - O(1) -> Average, O(N) -> Worst Case
+
+
+
+set:
+- insert, find, erase takes o(logn) time
+- size takes O(1) time
+
+
+STL ALGORITHMS
+- sort
+- find
+- lower_bound
+- upper_bound
+- max_element
+- min_element
+
+TREE TRAVERSALS
+- Inorder - Left Root Right
+- Preorder - Root Left Right
+- Postorder - Left Right Root
+- Level order
+- Line order
+- Morris Traversal - Inorder | Preorder
+
+Some Algortihms
+- Kadane's algorithm - Largest subarray sum
+- Moore's voting algorithm - elements present at least n/2 times
+- Dutch flag problem
+
+BSTs:
+Balanced BST
+Complete BST
+Perfect BST
+Red Black Tree
+
+Graphs:
+Bipartite Graph
+Skewed graph
+

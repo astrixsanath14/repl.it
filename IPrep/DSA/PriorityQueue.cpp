@@ -1,15 +1,15 @@
 /*
-CPP/UpperBound.cpp
+CPP/PriorityQueue.cpp
 10
 1 2 3 4 5 5 6 7 8 9
 1
 
-CPP/UpperBound.cpp
+CPP/PriorityQueue.cpp
 10
 1 2 3 4 5 5 6 7 8 9
 2
 
-CPP/UpperBound.cpp
+CPP/PriorityQueue.cpp
 10
 1 2 3 4 5 5 6 7 8 9
 5
@@ -19,6 +19,7 @@ CPP/UpperBound.cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <queue>
 #include <string>
 #define readVector(n, vec)      \
     for (int i = 0; i < n; i++) \
@@ -30,21 +31,32 @@ CPP/UpperBound.cpp
 #define print(val) cout << val
 using namespace std;
 
+void printPriorityQueue(priority_queue<int> pq)
+{
+    while (!pq.empty())
+    {
+        cout << pq.top() << ' ';
+        pq.pop();
+    }
+}
+
 int main()
 {
-    int n;
-    read(n);
-    vector<int> vp(n);
-    readVector(n, vp);
-    print("Array is\n");
-    printVector(vp);
-    print("\n");
+    priority_queue<int> pq;
+
+    vector<int> vec{10, 2, 4, 8, 6, 9};
+    // pushing array sequentially one by one
+    for (int i = 0; i < vec.size(); i++)
+    {
+        pq.push(vec[i]);
+    }
+
     while (true)
     {
         print("\n");
-        print("1. Find Upper Bound");
+        print("1. Insert into Queue");
         print("\n");
-        print("2. Find Lower Bound");
+        print("2. Print Queue");
         print("\n");
         print("3. Exit");
         print("\n");
@@ -56,24 +68,24 @@ int main()
         {
         case 1:
         {
-            int findUpperBound;
-            print("Enter value to find upper bound: ");
-            read(findUpperBound);
-            auto ub = upper_bound(vp.begin(), vp.end(), findUpperBound);
-            print("Upper bound of " + to_string(findUpperBound) + " is " + to_string(*ub) + " pos: " + to_string(ub - vp.begin()));
+            int value;
+            print("Enter value to be inserted: ");
+            read(value);
+            pq.push(value);
             break;
         }
 
         case 2:
         {
-            int findLowerBound;
-            print("Enter value to find lower bound: ");
-            read(findLowerBound);
-            auto lb = lower_bound(vp.begin(), vp.end(), findLowerBound);
-            print("Lower bound of " + to_string(findLowerBound) + " is " + to_string(*lb) + " pos: " + to_string(lb - vp.begin()));
+            printPriorityQueue(pq);
             break;
         }
         case 3:
+            end = true;
+            break;
+        default:
+            print("Invalid choice! Hence, quitting!");
+            print("\n");
             end = true;
         }
         if (end)
