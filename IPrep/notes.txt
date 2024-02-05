@@ -61,17 +61,170 @@ TREE TRAVERSALS
 - Morris Traversal - Inorder | Preorder
 
 Some Algortihms
-- Kadane's algorithm - Largest subarray sum
-- Moore's voting algorithm - elements present at least n/2 times
+- Kadane's algorithm
+    - Purpose:
+        - to find Largest subarray sum
+    - Time complexity:
+        - O(N)
+    - Space complexity:
+        - O(0)
+- Moore's voting algorithm
+    - Purpose:
+         - to find the element present at least n/2 times
+    - Time complexity:
+        - O(N)
+    - Space complexity:
+        - O(0)
 - Dutch flag problem
+    - Purpose:
+        - sort colors: Reds, Whites, Blues (or)  0s 1s & 2s
+    - Algo:
+        - before left index -> 0s' 
+        - after left before mid ->  1's 
+        - after mid before right -> 0's, 1's, 2's
+        - after right -> 2's
+    - Time complexity:
+        - O(N)
+    - Space complexity:
+        - O(0)
+- Z Function algorithm
+    - Purpose:
+        - for a string of len N, it gives an int array of len n, 
+            where the i-th element is equal to the greatest number of characters 
+            starting from the position i that coincide with the first characters of the string
+    - Time complexity:
+        - ??? 
+    - Space complexity:
+        - O(N)
+- Topological Sorting
+    - Purpose:
+        - to get a linear ordering of vertices/nodes such that if there is an edge form u to v, 
+            u appears before v in the order
+    - Uses in degree
+    - using bfs it uses queue
+    - using dfs it uses stack
+    - can be done only in DAG
+    - Time complexity:
+        - O(V+E)
+    - Space complexity:
+        - O(V+E)
+- Dijkstra
+    - Purpose:
+        - get min dist to all nodes from a source in an undirected graph
+    - single source
+    - cannot be used on directed / negative weight / negative cycle graphs
+    - using priority queue - min heap 
+        - top contains the vertex which can be visited with least upcoming distance
+    - using set
+        - can erase the paths to a vertex which is yet to be considered but with greater dist
+        - based on graph pq or set Implementation may be efficient
+    - Time Complexity:
+        - O(E * logV) (or) O(V^2 logV) 
+        - at worst case v^2 = e
+    - Space Complexity:
+        - O(V)
+- Bellman Ford
+    - Purpose:
+        - get min dist to all edges from a source in an directed graph
+    - single source
+    - graph can contain negative weights
+    - can detect negative cycles
+    - Intuition
+        - relax all the edges N-1 times sequentially, to opmitise the dist to a destination node
+        - Kind of Brute
+    - Algo: 
+        - initialise a 1D dist array, which denotes the dist from source to that particular node
+            - dist[source] = 0
+            - dist[other nodes] = inf
+        - Run a loop for N-1 times on all edges (u,v)
+        - if(dist[u] + wt < dist[v])
+            - dist[v] = dist[u] + wt
+        - At N-1th iteration, the dist table will contain the minimum path from source to all destinations
+    - Slower than Dijkstra's but solves cases with negative cycles & negative weights
+    - How to detect a negative cycle?
+        - At N-1th iteration, all the distances to destination nodes are optimized
+        - If we peorform 1 more iteration, i.e., Nth iteration, & any dist[i] reduces, 
+            it means negative cycle exists
+    - Why N-1 times?
+        - Consider, 1->2->3->4->5
+        - Say, 1 is the source, then we will compute in this order:
+        - it1: dist[2] = wt[1 to 2] + dist[1]
+        - it2: dist[3] = wt[2 to 3] + dist[2]
+        - it3: dist[4] = wt[3 to 4] + dist[3]
+        - it4: dist[5] = wt[4 to 5] + dist[4]
+        - hence, in worst case, N-1 iterations is required!
+    - Time Complexity: 
+        - O(V * E)
+    - Space Complexity:
+        - O(V)
+- Floyd warshall Algortihm
+    - get min dist from each vertex to remaining vertices in a directed graph
+    - multi source
+    - in case of an undirected graph, we can either:
+        - perform Dijkstra on all nodes as sources (OR)
+        - convert the undirected edge as a two way directed edge: edge (u->v) , edge (v->u)
+    - Intuition
+        - Brute
+    - Algo: 
+        - initialise a 2D array, which denotes the dist of one node to other nodes, with dist[i][i] = 0
+        - Enter dist values for all given edges: node from (i) to node (j) in dist[i][j]
+        - for every viaNode: 0 to N-1
+            - compute dist[i][j] = min(dist[i][j], dist[i][viaNode] + dist[viaNode][j])
+    - How to detect a negative cycle?
+        - If dist[i][i] < 0, it means negative cycle exists
+    - Time Complexity: 
+        - O(N^3)
+    - Space Complexity:
+        - O(V * V)
 
-BSTs:
-Balanced BST
-Complete BST
-Perfect BST
-Red Black Tree
+
+
+Trees:
+    - Complete BST
+        - When all the level of the tree is completely filled except possibly the last level, 
+            which is filled from left side. 
+        - In other words all the nodes are as far left as possible in complete binary tree.
+    - Balanced BST
+        - binary tree in which the height of the left and right subtree of any node differ by not more than 1
+    - Perfect BST
+        - tree with all child nodes on the same level and each node has a left and a right child node
+    - Red Black Tree (Balanced BST)
+        - Binary search tree in which every node is colored with either red or black. 
+        - This balance guarantees that the time complexity for operations such as insertion, deletion, 
+            and searching is always O(log n), regardless of the initial shape of the tree.
+        - It is a type of self balancing binary search
+    - Skewed Binary Tree
+        - Type of binary tree in which all the nodes have only either one child or no child.
+
 
 Graphs:
-Bipartite Graph
-Skewed graph
+    - Bipartite Graph
+        - A graph is bipartite if and only if it is 2-colorable, 
+            (i.e. its chromatic number is less than or equal to 2)
+
+
+
+## LEARNING
+STRIVER:
+
+Graphs
+    - Types - Directed & Undirected
+    - A tree is a graph
+    - A graph consists of Nodes & edges
+    - Given N nodes, the total no. of possible undirected graphs is 2^(N*(N-1)/2)
+    - Bipartite Graph
+        - Graph which can be color using 2 colors & no 2 adjacent nodes have same color
+            - All graphs are Bipartite except Odd length cyclic Graphs
+    - Topological Sorting
+        - Applicable to a Directed Acyclic Graph only
+        - Linear ordering of vertices such that if there is an edge from u to v, u appears before v
+        - It can be used to find the shortest path distance in a Directed Acyclic Grpah (DAG)
+            - The algorithm is better than Dijkstra for DAG alone. It cannot be used for graphs which are 
+                undirected or contain cycles.
+    - Shortest path in DAG with weight ~ use Topological sort
+    - Shortest path in Cyclice/Acyclic Undirected graph with unit weight ~ use simple BFS
+    - Shortest path in Undirected graph with no negative weights & no negative cycles ~ use Dijkstra's - using PQ
+    - For single source min path dist in a directed graph containing -ve cycles & wts. ~ use Bellman Ford algo
+    - For Multisource min path dist in a directed graph containing -ve cycles & wts. ~ use Floyd warshall algo
+
 
