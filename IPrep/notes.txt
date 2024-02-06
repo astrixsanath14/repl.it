@@ -160,7 +160,7 @@ Some Algortihms
 - Floyd warshall Algortihm
     - get min dist from each vertex to remaining vertices in a directed graph
     - multi source
-    - in case of an undirected graph, we can either:
+    - for undirected graph, we can either:
         - perform Dijkstra on all nodes as sources (OR)
         - convert the undirected edge as a two way directed edge: edge (u->v) , edge (v->u)
     - Intuition
@@ -176,6 +176,70 @@ Some Algortihms
         - O(N^3)
     - Space Complexity:
         - O(V * V)
+- Prim's MST Algo:
+    - Purpose:
+        - Used to find the MST & the sum of an undirected weighted graph
+    - Algo:
+        - Just like Dijkstra's, but uses a visited array additionally, 
+            in order to the store if the vertex has been assisgned an edge.
+        - create: vis(n), edges[<pair<int,int>>], priority_queue<pair<int,pair<int,int>>>
+            - dist & edge will be stored in pq
+        - insert the first node in pq, with dist 0 and parent -1
+        - pop out of the pq
+            - if visited, continue
+            else,
+                - it will be the most min dist value to that node. mark vis[node] = 1
+                - iterate through the adjacencies, & push into pq if not visited
+    - Intuition:
+        - Greedy - look for all short edges first
+    - Time Complexity: 
+        - O(E * logE)
+- Dijoint Set Union
+    - Purpose:
+        - Used in dynamic graphs to find if two nodes/vertices are connected in constant time
+    - Algo:
+        - three functionalities:
+            - findUltimateParent
+            - unionBySize
+            - unionByRank
+        - findUltimateParent
+            - it is used to find the ultimate parent of any vertex in a component
+            - it uses path compression technique
+            - eg to find findUltimateParent(u):
+                - if ( u == parent[u] ) return u
+                - else parent[u] = findUltimateParent(parent[u])
+            - so next time findUltimateParent(u) can be found out in O(1)
+        - unionBySize
+            - initally all parent[i] = i, and size[i] = 1
+            - if findUltimateParent(u) == findUltimateParent(v) it is already connected
+            - else if size[findUltimateParent(u)] < size[findUltimateParent(v)]
+                - parent[u] = v
+                - size[v] += size[u]
+            - else
+                - parent[v] = u
+                - size[u] += size[v]
+        - unionByRank
+            - initally all parent[i] = i, and rank[i] = 0
+            - if findUltimateParent(u) == findUltimateParent(v) it is already connected
+            - else if rank[findUltimateParent(u)] < rank[findUltimateParent(v)]
+                - parent[u] = v
+            - else if rank[findUltimateParent(u)] > rank[findUltimateParent(v)]
+                - parent[v] = u
+            - else // in case of same rank size, v get attached to u & increases rank by 1
+                - rank[u]++
+                - parent[v] = u
+    - Time Complexity:
+        - O(4 * alpha) ~ O(1)
+- Kruskal's MST Algo (DSU):
+    - Purpose:
+        - To find the MST of a weighted undirected graph
+    - Algo:
+        - Sort the edges based on weights
+        - traverse through each edge (u,v) in order
+        - check if the u & v are connected using DSU
+            - if yes, continue
+            - else, do unionBySize and add the wt to overallWt
+        - After traversing all edges, the wt aquired is the wt of MST 
 
 
 
@@ -195,6 +259,11 @@ Trees:
         - It is a type of self balancing binary search
     - Skewed Binary Tree
         - Type of binary tree in which all the nodes have only either one child or no child.
+    - Spanning tree
+        - It is a tree with N nodes/vertices & N-1 edges, created from a Graph
+        - N denotes the no. of vertices in the Graph
+    - Minimum Spanning Tree
+        - It is a spanning tree, where the sum of weights of all the edges id the most minimum
 
 
 Graphs:
