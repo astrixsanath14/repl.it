@@ -120,7 +120,7 @@ Some Algortihms
         - based on graph pq or set Implementation may be efficient
     - Time Complexity:
         - O(E * logV) (or) O(V^2 logV) 
-        - at worst case v^2 = e
+        - at worst case v^2 = E
     - Space Complexity:
         - O(V)
 - Bellman Ford
