@@ -16,5 +16,11 @@ gifts = [
 (5, 4),
 (6, 3)
 ]
-result = maximum_gifts(N, gifts)
+
+gifts = [
+(50, 50),
+(51, 20),
+(52, 20)
+]
+result = maximum_gifts(len(gifts), gifts)
 print(result)
