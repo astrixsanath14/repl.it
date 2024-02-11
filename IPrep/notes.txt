@@ -87,15 +87,24 @@ Some Algortihms
         - O(N)
     - Space complexity:
         - O(0)
-- Z Function algorithm
-    - Purpose:
-        - for a string of len N, it gives an int array of len n, 
-            where the i-th element is equal to the greatest number of characters 
-            starting from the position i that coincide with the first characters of the string
-    - Time complexity:
-        - ??? 
-    - Space complexity:
-        - O(N)
+- String matching algorithms
+    - Z Function algorithm
+        - Purpose:
+            - for a string of len N, it gives an int array of len n, 
+                where the i-th element is equal to the greatest number of characters 
+                starting from the position i that coincide with the first characters of the string
+        - Time complexity:
+            - ??? 
+        - Space complexity:
+            - O(N)
+    - KMP (Knuth Morris Pratt) search algo
+        - Time complexity:
+            - O(N + m) 
+    - Rabin-Karp String Matching Algorithm
+        - Time complexity:
+            - ??? 
+        - Space complexity:
+            - O(N)
 - Topological Sorting
     - Purpose:
         - to get a linear ordering of vertices/nodes such that if there is an edge form u to v, 
@@ -194,7 +203,7 @@ Some Algortihms
         - Greedy - look for all short edges first
     - Time Complexity: 
         - O(E * logE)
-- Dijoint Set Union
+- Disjoint Set Union (DSU)
     - Purpose:
         - Used in dynamic graphs to find if two nodes/vertices are connected in constant time
     - Algo:
@@ -240,31 +249,98 @@ Some Algortihms
             - if yes, continue
             - else, do unionBySize and add the wt to overallWt
         - After traversing all edges, the wt aquired is the wt of MST 
+- Reservoir Sampling
+    - To get a random value from a set/list of values without knowing the size. 
+    - Ensures that probability of random choosing of number is 1/n
+    - algo:
+        - i=0
+        - while input num
+            - i++
+            - if rand() % i == i-1:
+                randomVal = num
+        - at end of stream/linked list, randomVal will contain the random value
+    - Time complexity:
+        O (N)
+- Kosarju's strongly connected components
+    - to find the SCCs & their nodes only in a directed graph
+    - SCC is a component in which all nodes are reachable to each other
+    - algo:
+        - store the nodes in order of finishing time
+            - use a stack to store the order of visit of a dfs from all nodes, skip if visited (through some edge leading to it)
+            - the node who has no further nodes to visit will be at the bottom of the stack
+        - reverse all edges
+        - traverse from top of stack & perform dfs on non-visited nodes repeatedly
+            - no. of times dfs peroformed is no. of SCCs
+    - Time complexity:
+        - 3 * O (V + E)
+- Tarjan's Algorithm of time in and low time
+    - Purpose:
+        - To find bridges in an undirected graph
+            - bridges are edges which can break into two components
+    - Algo:
+        - visit every node once & store the in time & low time as an incremented timer
+        - in dfs, make further dfs calls to adjacents
+        - when a node tries to visit someone who is already visited, it means there is more than 1 way to reach that node
+            - update the low time of curr node as:
+                - low[currNode] = min(low[currNode], low[adjNode])
+        - after making the dfs call to adjNode, check
+            - if adjNode != parentNode && low[adjNode] <= low[currNode] // this node can be visited through some other node
+                - hence this edge is not going to break into 2 components
+            - else, 
+                - mark the curr edge as a bridge
+        - dfs(adjNode, parentNode)
+            - first call: dfs(0, -1)
+    - Time complexity:
+        - O (V + E)
+- Articulation point
+    - The node/vertex, which when removed can break the graph into multiple components
+    - Algo:
+        - visit every node once & store the in time & low time as an incremented timer
+        - in dfs, make further dfs calls to adjacents
+        - when a node tries to visit someone who is already visited, it means there is more than 1 way to reach that node
+            - update the low time of curr node as:
+                - low[currNode] = min(low[currNode], in[adjNode])
+        - after making the dfs call to adjNode, check
+            - if adjNode != parentNode && low[adjNode] < low[currNode] // this node can be visited through some other node
+                - hence, from adjNode, a new component won't be formed as it can be connected through anoother vertex
+            - else, 
+                - mark currNode as an articulation point
+        - NOTE:
+            - for first node (with parent: -1) alone, the algo will change a little:
+                - it will be the no. of unique child components, i.e, nodes who are not visited after previous dfs call
+        - dfs(adjNode, parentNode)
+            - first call: dfs(0, -1)
 
 
 
-Trees:
-    - Complete BST
-        - When all the level of the tree is completely filled except possibly the last level, 
-            which is filled from left side. 
-        - In other words all the nodes are as far left as possible in complete binary tree.
-    - Balanced BST
-        - binary tree in which the height of the left and right subtree of any node differ by not more than 1
+
+Binary Trees:
+    - Full Binary tree:
+        - Each node has 0 or 2 children
+    - Complete Binary tree:
+        - All levels completely filled
+        - Except possibly the last level, which will have all nodes left most as possible
     - Perfect BST
         - tree with all child nodes on the same level and each node has a left and a right child node
+    - Balanced BST
+        - binary tree in which the height of the left and right subtree of any node differ by not more than 1 (or)
+        - max tree height can be log(N), N - no of nodes
     - Red Black Tree (Balanced BST)
         - Binary search tree in which every node is colored with either red or black. 
         - This balance guarantees that the time complexity for operations such as insertion, deletion, 
             and searching is always O(log n), regardless of the initial shape of the tree.
         - It is a type of self balancing binary search
-    - Skewed Binary Tree
+    - Degenerate/Skewed Tree
         - Type of binary tree in which all the nodes have only either one child or no child.
+N-ary Trees:    
     - Spanning tree
         - It is a tree with N nodes/vertices & N-1 edges, created from a Graph
         - N denotes the no. of vertices in the Graph
     - Minimum Spanning Tree
         - It is a spanning tree, where the sum of weights of all the edges id the most minimum
 
+Binary tree traversals:
+    - 
 
 Graphs:
     - Bipartite Graph
