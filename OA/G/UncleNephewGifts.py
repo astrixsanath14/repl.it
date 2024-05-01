@@ -22,5 +22,11 @@ gifts = [
 (51, 20),
 (52, 20)
 ]
+
+gifts = [
+(50, 50),
+(51, 25),
+(52, 27)
+]
 result = maximum_gifts(len(gifts), gifts)
 print(result)
