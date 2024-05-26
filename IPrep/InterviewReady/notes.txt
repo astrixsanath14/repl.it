@@ -14,7 +14,7 @@ Intro
                 - Pizza Team 1 - 4 chefs
                 - Pizza Team 2 - 3 chefs
                 - Garlic Bread Team - 3 chefs
-            - Redirect items based on team's strength
+            - Redirect items based on team's strength & assign resposibilities
         - What if elecrity gets shuts down in the shop?
             - Distributed System
                 - Availability - Fault Tolerant
@@ -33,4 +33,22 @@ Intro
                 - Overall 1h 5m
             - Should route to PS2
             - Intelligent teams -> make more money
+        - System is Fault Tolerant & Scalable, how to make it Extensible?
+            - How to make it flexible to change?
+        - Say there are 4 entities in our system: Customer, Pizza shops, Load Balancer, Delivery agent
+        - We can separate the resposibilities
+            - Decoupling
+            - Any issue with a particular entity can be attendeded to by its own manager
+        - Logging & Metrics
+            - Analyse, Auditing, Report, ML..
+        - Extensible
+            - Rewrite less code in future
+            - Delivery agent need not know about what is being delivered
+        - Summary:
+            - Order Overload -> Recruitment
+            - Complexity -> Separation of concerns
+            - Mishaps -> Fault Tolerance
 
+2/2/24
+Horizontal Vs Vertical Scaling
+    - 
